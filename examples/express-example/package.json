@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "now-build": "node app.js"
   },
   "dependencies": {
     "express": "^4.0.0",
     "express-session": "^1.11.1",
-    "session-file-store": "*"
+    "session-file-store": "^1.4.0"
   }
 }
