@@ -1,14 +1,22 @@
 {
-  "name": "file-session",
+  "name": "session-file-store",
   "version": "0.0.1",
-  "main": "app.js",
+  "engines": {
+    "node": "14.5.0"
+  },
+  "main": "api/app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node api/app.js"
   },
   "dependencies": {
-    "express": "^4.0.0",
-    "express-session": "^1.11.1",
-    "cbor-sync": "^1.0.2",
-    "session-file-store": "*"
+    "cbor-sync": "^1.0.4",
+    "dotenv": "^8.2.0",
+    "express-session": "^1.17.1",
+    "session-file-store": "^1.4.0"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.7.1",
+    "express": "^4.17.1",
+    "vercel": "^19.1.1"
   }
 }
