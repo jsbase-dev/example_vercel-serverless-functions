@@ -26,3 +26,4 @@ nbproject
 .node_history
 coverage
 /sessions
+.env
