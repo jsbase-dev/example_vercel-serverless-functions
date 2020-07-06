@@ -6,12 +6,12 @@ const os = require('os');
 const data = require(path.join(__dirname, '/../store/data.json'));
 // const buffer = CBOR.encode(data);
 
-module.exports = function (req, res) {
+module.exports = function get(req, res) {
     let jsonStr = JSON.stringify(data);
 
-    fs.writeFile(path.join(os.tmpdir(), '/store.json'), jsonStr, function (err) {
-        if (err) { return console.error(err); }
-
-        return res.end();
+    fs.writeFileSync(path.join(os.tmpdir(), '/store.json'), jsonStr, function (err) {
+        if (err) { return res.end(err); }
     });
+
+    return res.json(JSON.stringify(data))
 };
