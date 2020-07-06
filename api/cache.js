@@ -1,17 +1,18 @@
-const fs = require('fs-extra');
-const path = require ('path');
-const os = require('os');
+const fs = require('fs-extra')
+const path = require ('path')
+const os = require('os')
 
-module.exports = function (req, res) {
-    const json = {};
+module.exports = function get(req, res) {
+	const json = {}
 
-    fs.readFileSync(
-	path.join(os.tmpdir(), '/store.json'),
-	function (err, data) {
-            if (err) return console.error(err);
+    // console.log(' > tmpdir ' + os.tmpdir())
+	const storePath = path.join(os.tmpdir(), '/store.json')
+	// console.log(' > storePath ' + storePath)
 
-	    json = Object.assign(JSON.stringify(data), json);
-	});
+	fs.readFileSync(storePath, function (err, data) {
+		if (err) { res.json(JSON.stringify({ error: err })) }
+		json = Object.assign( data, json )
+	})
 
-    return res.json(json);
+	return res.json( JSON.stringify(json) )
 };

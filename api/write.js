@@ -1,17 +1,21 @@
-const fs = require('fs-extra');
-const path = require('path');
-const os = require('os');
-// const CBOR = require('cbor-sync');
+const fs = require('fs-extra')
+const path = require('path')
+const os = require('os')
+// const CBOR = require('cbor-sync')
+// fs.writeFileSync( storePath, buffer, (err) => console.log(err) )
 
-const data = require(path.join(__dirname, '/../store/data.json'));
-// const buffer = CBOR.encode(data);
+const dataPath = path.join(__dirname, '/../store/data.json')
+const data = require(dataPath)
 
 module.exports = function get(req, res) {
-    let jsonStr = JSON.stringify(data);
+	const jsonStr = JSON.stringify(data)
+	// console.log(' > json:', jsonStr)
 
-    fs.writeFileSync(path.join(os.tmpdir(), '/store.json'), jsonStr, function (err) {
-        if (err) { return res.end(err); }
-    });
+	// console.log(' > tmpdir ' + os.tmpdir())
+	const storePath = path.join(os.tmpdir(), '/store.json')
+	// console.log(' > storePath ' + storePath)
 
-    return res.json(JSON.stringify(data))
-};
+	fs.writeFileSync(storePath, jsonStr, function (err) { return res.json(JSON.stringify({ error: err })) })
+
+	return res.json( JSON.stringify({ storePath, originalJson: jsonStr }) )
+}
