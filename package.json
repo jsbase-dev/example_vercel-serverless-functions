@@ -9,9 +9,9 @@
     "build": "rm -rf ./public && mkdir ./public && less -FX index.html >> ./public/index.html"
   },
   "dependencies": {
+    "cbor-sync": "^1.0.4",
     "dotenv": "^8.2.0",
-    "fs-extra": "^9.0.1",
-    "cbor-sync": "^1.0.4"
+    "fs-extra": "^9.0.1"
   },
   "devDependencies": {}
 }
