@@ -31,5 +31,5 @@ module.exports = function get(req, res) {
 		return res.json(result)
 	})
 
-	return res.end(' ⏰ File not created! ')
+	// return res.end(' ⏰ File not created! ')
 }
