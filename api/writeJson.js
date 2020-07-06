@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
+const cbor = require('cbor-sync')
 
-const data = cbopr.encode({
+const data = cbor.encode({
 	"text": "Welcome to the file session demo. Refresh page!",
 	"views": 0
 });
@@ -14,7 +15,7 @@ module.exports = (req, res) => {
 		// else:
 		res.setHeader('Content-Type', 'text/html');
 
-		let views = cbopr.decore(data).views;
+		let views = cbor.decore(data).views;
 
 		res.write(`<h1>views: ${views++}<h1>`);
 	});
@@ -22,7 +23,7 @@ module.exports = (req, res) => {
 
 /*
 if (true) {
-	data = cbopr.encode(Object.assign({ views }, rawData));
+	data = cbor.encode(Object.assign({ views }, rawData));
 
 	return res.end("☝ No no no! ☝");
 }
