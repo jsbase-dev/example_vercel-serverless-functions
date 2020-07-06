@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const os = require('os');
-const CBOR = require('cbor-sync');
+const CBOR = require('cbor');
 
 module.exports = function (req, res) {
     fs.readFile(
