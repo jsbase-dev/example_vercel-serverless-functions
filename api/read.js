@@ -4,15 +4,13 @@ const os = require('os')
 
 module.exports = function get(req, res) {
 	const json = {}
-
-    console.log(' > read - tmpdir ' + os.tmpdir())
-	const storePath = path.join(os.tmpdir(), '/store.json')
-	console.log(' > read - storePath ' + storePath)
+	const storePath = path.join(__dirname, '/../store/store.json')
 
 	fs.readFileSync(storePath, function (err, data) {
-		if (err) { res.json(JSON.stringify({ error: err })) }
-		json = Object.assign( data, json )
-	})
+		if (err) {
+			data = { error: err }
+		}
 
-	return res.json( JSON.stringify(json) )
+		return res.json( JSON.stringify( Object.assign(data, { storePath }, json) ) )
+	})
 };

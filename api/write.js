@@ -7,12 +7,26 @@ const data = require(dataPath)
 
 module.exports = function get(req, res) {
 	const jsonStr = JSON.stringify(data)
+	const storePath = path.join(__dirname, '/../store/store.json')
 
-	console.log(' > write - tmpdir ' + os.tmpdir())
-	const storePath = path.join(os.tmpdir(), '/store.json')
 	console.log(' >  write - storePath ' + storePath)
 
-	fs.writeFileSync(storePath, jsonStr, function (err) { return res.json(JSON.stringify({ error: err })) })
+	fs.writeFileSync(storePath, jsonStr, function (err) {
+		let jsonData = {}
 
-	return res.json( JSON.stringify({ storePath, originalJson: jsonStr }) )
+		if (err || !jsonStr.length ) {
+			jsonData = { error: err }
+		}
+
+		// else:
+		return res.json( JSON.stringify( Object.assign(data, { storePath }, jsonData) ) )
+	} )
+
+	/* fs.readFileSync(storePath, function (err, data) {
+		if (err || !Object.keys(data).length ) {
+			data = { error: err }
+		}
+
+		return res.json( JSON.stringify( Object.assign(data, json) ) )
+	}) */
 }
