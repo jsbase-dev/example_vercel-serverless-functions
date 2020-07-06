@@ -2,7 +2,7 @@
   "name": "session-file-store",
   "version": "0.0.1",
   "engines": {
-    "node": "14.5.0"
+    "node": "14.x"
   },
   "main": "api/app.js",
   "scripts": {

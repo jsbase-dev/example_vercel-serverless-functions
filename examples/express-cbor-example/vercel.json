@@ -2,8 +2,6 @@
   "version": 2,
   "build": { "env": { "NODEJS_HELPERS": "0" } },
   "functions": {
-    "api/app.js": {
-      "memory": 1024, "runtime": "@vercel/node@14.5.0"
-    }
+    "api/app.js": { "memory": 1024 }
   }
 }
