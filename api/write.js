@@ -7,11 +7,11 @@ const data = require(path.join(__dirname, '/../store/data.json'));
 // const buffer = CBOR.encode(data);
 
 module.exports = function (req, res) {
-    fs.writeFile(path.join(os.tmpdir(), '/store.json'), JSON.stringify(data), function (err) {
+    let jsonStr = JSON.stringify(data);
+
+    fs.writeFile(path.join(os.tmpdir(), '/store.json'), jsonStr, function (err) {
         if (err) { return console.error(err); }
 
-        console.log(`  ➤  📰 write data: ${JSON.stringify(data)}`);
+        return res.end();
     });
-
-    return res.json(JSON.stringyfy(data));
 };
