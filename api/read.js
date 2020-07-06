@@ -1,11 +1,13 @@
 const fs = require('fs-extra');
 const CBOR = require('cbor-sync');
 
-fs.readFileSync('store.json', function (err, data) {
-	if (err) {
-	   return console.error(err);
-	}
+fs.readFile(
+	`${__dirname}/../store/store.cbor`,
+	function (err, buffer) {
+		if (err) return console.error(err);
 
-	//else:
-	console.log("Asynchronous read: " + data.toString());
- });
+		let data = CBOR.decode(buffer)
+
+		console.log(`  ➤  📰 read data: ${JSON.stringify(data)}`);
+	}
+);
