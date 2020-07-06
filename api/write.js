@@ -7,7 +7,7 @@ const data = require(path.join(__dirname, '/../store/data.json'));
 // const buffer = CBOR.encode(data);
 
 module.exports = function (req, res) {
-    fs.writeFile(path.join(os.tmpdir(), '/store.json'), ${JSON.stringify(data), function (err) {
+    fs.writeFile(path.join(os.tmpdir(), '/store.json'), JSON.stringify(data), function (err) {
         if (err) { return console.error(err); }
 
         console.log(`  ➤  📰 write data: ${JSON.stringify(data)}`);
