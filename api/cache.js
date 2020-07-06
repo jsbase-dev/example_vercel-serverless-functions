@@ -3,13 +3,15 @@ const path = require ('path');
 const os = require('os');
 
 module.exports = function (req, res) {
-    fs.readFile(
+    let json;
+
+    fs.readFileSync(
 	path.join(os.tmpdir(), '/store.json'),
 	function (err, data) {
-		if (err) return console.error(err);
+            if (err) return console.error(err);
 
-		let json = JSON.stringify(data);
+	    json = JSON.stringify(data);
+	});
 
-		return res.json(json);
-	}
-);
+    return res.json(json);
+};
