@@ -4,9 +4,10 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "api/app.js",
+  "main": "index.js",
   "scripts": {
-    "build": "rm -rf ./public && mkdir ./public && less -FX index.html >> ./public/index.html"
+    "build": "rm -rf ./public && mkdir ./public && less -FX index.html >> ./public/index.html",
+    "test": "node --experimental-worker index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -14,5 +15,6 @@
     "os": "^0.1.1",
     "path": "^0.12.7"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "gypfile": true
 }

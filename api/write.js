@@ -1,35 +1,25 @@
-const fs = require('fs-extra')
+const fs = require('fs-extra') // https://github.com/jprichardson/node-fs-extra#methods
 const path = require('path')
 const os = require('os')
 
-module.exports = function get(req, res) {
-	const dataPath = path.join(__dirname, '/../store/data.json')
-	console.log(' > dataPath:', dataPath)
+const dataPath = path.join(__dirname, '/../store/data.json')
+const data = require(dataPath)
 
-	const data = require(dataPath)
-	console.log(' > data:', data)
+// const storePath = path.join(__dirname, '/../store/store.json')
+const storePath = path.join(os.tmpdir(), '/store.json')
 
-	const jsonStr = JSON.stringify(data)
-	console.log(' > jsonStr:', jsonStr)
+console.log(` 📰 Store Path:${storePath}`)
 
-	// const storePath = path.join(__dirname, '/../store/store.json')
-	const storePath = path.join(os.tmpdir(), '/store.json')
-	console.log(' > storePath:', storePath)
+module.exports = (req, res) => fs.outputFile(storePath, JSON.stringify(data)).then(() => {
 
-	fs.writeFileSync(storePath, jsonStr, function (err) {
-		if (err) { return res.end(`⏰ ${err}`) }
-	})
+	return fs.readJson(storePath).then(storeData => {
+		console.log(` 📰 Store Data:${JSON.stringify(storeData)}`)
 
-	fs.readFileSync(storePath, function (err, data) {
-		if (err) { return res.end(`⏰ ${err}`) }
+		const response = Object.assign({}, storeData, { url: storePath })
 
-		const result = JSON.stringify(
-			Object.assign(data, { dataPath, storePath })
-		)
-		console.log(' > result:', result)
+		console.log(` 📰 Server response:${JSON.stringify(response)}`)
 
-		return res.json(result)
-	})
+		return res.status(200).json(response)
+	}).catch(( err) => res.status(500).json(err))
 
-	// return res.end(' ⏰ File not created! ')
-}
+}).catch(( err) => res.status(500).json(err))
