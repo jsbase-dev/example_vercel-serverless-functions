@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const path = require('path')
+const path = require('path');
 const CBOR = require('cbor-sync');
 
 const data = require(path.join(__dirname, '/../store/data.json'));
@@ -18,5 +18,5 @@ module.exports = function (req, res) {
 	}
     );
 
-    return res.json(JSON.stringyfy(CBOR.encode(data)));
+    return res.json(JSON.stringyfy(CBOR.decode(data)));
 };
