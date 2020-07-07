@@ -13,4 +13,3 @@ const pathServer = path.join(__dirname, '/../index.js')
 fs.outputFileSync(pathServer, `module.exports = '${serverJs}'`)
 
 console.log(` ☘️   Server createt at "${pathServer}"`)
-
