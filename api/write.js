@@ -10,12 +10,9 @@ const storePath = path.join(os.tmpdir(), '/store.json')
 
 console.log(` 📰 Store Path:${storePath}`)
 
-const idx = 0
-
 module.exports = (req, res) => fs.outputFile(storePath, JSON.stringify(data)).then(() => {
-
 	return fs.readJson(storePath).then((err, result) => {
-		const response = Object.assign({ id: idx++ }, result, { url: storePath })
+		const response = Object.assign({ id: 1 }, result, { url: storePath })
 
 		console.log(` 📰 Server response:${JSON.stringify(response)}`)
 
