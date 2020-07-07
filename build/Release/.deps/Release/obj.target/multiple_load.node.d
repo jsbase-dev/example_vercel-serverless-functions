@@ -1,1 +1,0 @@
-cmd_Release/obj.target/multiple_load.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=multiple_load.node -o Release/obj.target/multiple_load.node -Wl,--start-group Release/obj.target/multiple_load/multiple_load.o -Wl,--end-group 

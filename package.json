@@ -6,15 +6,14 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf ./public && mkdir ./public && less -FX index.html >> ./public/index.html",
-    "test": "node --experimental-worker index.js"
+    "build": "node ./api/build.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
     "os": "^0.1.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "polka": "^0.5.2"
   },
-  "devDependencies": {},
-  "gypfile": true
+  "devDependencies": {}
 }
