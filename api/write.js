@@ -12,7 +12,7 @@ console.log(` 📰 Store Path:${storePath}`)
 
 module.exports = (req, res) => fs.outputFile(storePath, JSON.stringify(data)).then(() => {
 	return fs.readJson(storePath).then((err, result) => {
-		const response = Object.assign({ id: 1 }, result, { url: storePath })
+		const response = Object.assign({ id: 1, url: storePath }, result)
 
 		console.log(` 📰 Server response:${JSON.stringify(response)}`)
 
