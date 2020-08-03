@@ -49,17 +49,6 @@ jobs:
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
-      - name: Export
-        run: npm run export
-        env:
-          PORT: 5000
-          NODE_ENV: production
-
-      - name: Start
-        run: npm run static & (sleep 200 && killall -9 node)
-        env:
-          PORT: 5000
-          NODE_ENV: production
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
