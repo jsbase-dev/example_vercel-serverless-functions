@@ -15,7 +15,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.5",
     "os": "^0.1.1",
     "path": "^0.12.7",
     "polka": "^0.5.2"
